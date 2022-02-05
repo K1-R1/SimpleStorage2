@@ -1,6 +1,6 @@
 from brownie import accounts, config, SimpleStorage
 
-def deploy_SimpleStorage():
+def deploy_simple_storage():
     #local network account
     account = accounts[0]
     
@@ -15,4 +15,4 @@ def deploy_SimpleStorage():
     print(updated_stored_value)
 
 def main():
-    deploy_SimpleStorage()
+    deploy_simple_storage()
