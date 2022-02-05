@@ -1,12 +1,18 @@
-from brownie import accounts, config
+from brownie import accounts, config, SimpleStorage
 
-def deploy_simpleStorage():
-    #local rpc account
-    #account = accounts[0]
+def deploy_SimpleStorage():
+    #local network account
+    account = accounts[0]
     
-    #live account
-    account = accounts.add(config['wallets']['dev_account_1']['private_key'])
-    print(account)
+    #live network account
+    # account = accounts.add(config['wallets']['dev_account_1']['private_key'])
+
+    simple_storage = SimpleStorage.deploy({'from': account})
+    stored_value = simple_storage.retrieve()
+    print(stored_value)
+    simple_storage.store(452, {'from': account}).wait(1)
+    updated_stored_value = simple_storage.retrieve()
+    print(updated_stored_value)
 
 def main():
-    deploy_simpleStorage()
+    deploy_SimpleStorage()
